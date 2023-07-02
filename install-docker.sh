@@ -20,7 +20,7 @@ echo \
 sudo apt-get update
 
 #Install Docker Engine, containerd, and Docker Compose.
-sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
 
 #Create the docker group.
 sudo groupadd docker
