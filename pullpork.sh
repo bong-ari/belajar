@@ -20,17 +20,7 @@ sudo sed -i 's/^snort_blocklist.*/snort_blocklist = true/' /usr/local/etc/pulled
 sudo sed -i 's/^et_blocklist.*/et_blocklist = true/' /usr/local/etc/pulledpork3/pulledpork.conf
 sudo sed -i 's/^snort_path.*/snort_path = /usr/local/bin/snort/' /usr/local/etc/pulledpork3/pulledpork.conf
 sudo sed -i 's/^local_rules.*/local_rules =  /usr/local/etc/rules/local.rules/' /usr/local/etc/pulledpork3/pulledpork.conf
-
-# Path to the configuration file
-config_file=" /usr/local/etc/snort/snort.lua"
-
-# Lines to be added
-line1="enable_builtin_rules = true,"
-line2="include = RULE_PATH .. \"/pulledpork.rules\","
-
-# Add lines to the configuration file
-sed -i "173i$line1" "$config_file"
-sed -i "174i$line2" "$config_file"
+sudo sed -i 's/^#pid_path/pid_path/' /usr/local/etc/pulledpork3/pulledpork.conf
 
 #add So_rules
 snort -c /usr/local/etc/snort/snort.lua --plugin-path /usr/local/etc/so_rules/
