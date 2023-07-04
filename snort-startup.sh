@@ -13,7 +13,7 @@ After=syslog.target network.target
 [Service]
 Type=simple
 ExecStart=/usr/local/bin/snort -c /usr/local/etc/snort/snort.lua -s 65535 \
--k none -l /var/log/snort -D -u snort -g snort -i eth0 -m 0x1b --create-pidfile \
+-k none -l /var/log/snort -D -u snort -g snort -i ens33 -m 0x1b --create-pidfile \
 --plugin-path=/usr/local/etc/so_rules/
 [Install]
 WantedBy=multi-user.target
