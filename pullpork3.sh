@@ -22,6 +22,12 @@ sudo sed -i 's/^snort_path.*/snort_path = /usr/local/bin/snort/' /usr/local/etc/
 sudo sed -i 's/^local_rules.*/local_rules =  /usr/local/etc/rules/local.rules/' /usr/local/etc/pulledpork3/pulledpork.conf
 sudo sed -i 's/^#pid_path/pid_path/' /usr/local/etc/pulledpork3/pulledpork.conf
 
+# Script to update snort.lua configuration
+file_path="/usr/local/etc/snort/snort.lua"
+
+# Add commands to snort.lua
+sed -i 's/variables = default_variables/include = RULE_PATH .. "\/pulledpork.rules",\n\nvariables = default_variables/' "$file_path"
+
 #add So_rules
 snort -c /usr/local/etc/snort/snort.lua --plugin-path /usr/local/etc/so_rules/
 
