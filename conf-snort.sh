@@ -14,10 +14,7 @@ EOL
 #Now run Snort and have it load the local.rules file (with the -R flag) to make sure it loads these rules correctly (verifying the rules are correctly formatted):
 snort -c /usr/local/etc/snort/snort.lua -R /usr/local/etc/rules/local.rules
 
-#!/bin/bash
-
 # Script to update snort.lua configuration
-
 file_path="/usr/local/etc/snort/snort.lua"
 
 # Add commands to snort.lua
