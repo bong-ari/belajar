@@ -11,16 +11,16 @@ cd ~/snort_src
 apt-get install -y build-essential autotools-dev libdumbnet-dev libluajit-5.1-dev libpcap-dev \
 zlib1g-dev pkg-config libhwloc-dev cmake liblzma-dev openssl libssl-dev cpputest libsqlite3-dev \
 libtool uuid-dev git autoconf bison flex libcmocka-dev libnetfilter-queue-dev libunwind-dev \
-libmnl-dev ethtool libjemalloc-dev libpcre3
+libmnl-dev ethtool libjemalloc-dev libpcre3 libpcre3-dev
 
-#download and install safec
+#download and install safecsudo snort -c /usr/local/etc/snort/snort.lua -i eth0 -A alert_fast -s 65535 -k none
 cd ~/snort_src
 wget https://github.com/rurban/safeclib/releases/download/v02092020/libsafec-02092020.tar.gz
 tar -xzvf libsafec-02092020.tar.gz
 cd libsafec-02092020.0-g6d921f
 ./configure
 make
-make install
+sudo make install
 
 #download and install perl compatible regular expressions
 cd ~/snort_src/
@@ -29,7 +29,7 @@ tar -xzvf pcre-8.45.tar.gz
 cd pcre-8.45
 ./configure
 make
-make install
+sudo make install
 
 #download and install pgperftools
 cd ~/snort_src
@@ -38,7 +38,7 @@ tar xzvf gperftools-2.9.1.tar.gz
 cd gperftools-2.9.1
 ./configure
 make
-make install
+sudo make install
 
 #download and install Ragel
 cd ~/snort_src
@@ -47,7 +47,7 @@ tar -xzvf ragel-6.10.tar.gz
 cd ragel-6.10
 ./configure
 make
-make install
+sudo make install
 
 #download boost C++
 cd ~/snort_src
@@ -56,13 +56,18 @@ tar -xvzf boost_1_77_0.tar.gz
 
 #download and install hyperscan
 cd ~/snort_src
-wget https://github.com/intel/hyperscan/archive/refs/tags/v5.4.0.tar.gz
-tar -xvzf v5.4.0.tar.gz
-mkdir ~/snort_src/hyperscan-5.4.0-build
-cd hyperscan-5.4.0-build/
-cmake -DCMAKE_INSTALL_PREFIX=/usr/local -DBOOST_ROOT=~/snort_src/boost_1_77_0/ ../hyperscan-5.4.0
+#wget https://github.com/intel/hyperscan/archive/refs/tags/v5.4.0.tar.gz
+#tar -xvzf v5.4.0.tar.gz
+#mkdir ~/snort_src/hyperscan-5.4.0-build
+#cd hyperscan-5.4.0-build/
+git clone https://github.com/intel/hyperscan.git
+cd hyperscan
+mkdir build
+cd build
+#cmake -DCMAKE_INSTALL_PREFIX=/usr/local -DBOOST_ROOT=~/snort_src/boost_1_77_0/ ../hyperscan-5.4.0
+cmake -DCMAKE_INSTALL_PREFIX=/usr/local -DBOOST_ROOT=~/snort_src/boost_1_77_0/ ../hyperscan
 make
-make install
+sudo make install
 
 #download and install flatbuffers
 cd ~/snort_src
@@ -72,7 +77,7 @@ mkdir flatbuffers-build
 cd flatbuffers-build
 cmake ../flatbuffers-2.0.0
 make
-make install
+sudo make install
 
 #download and instal DAQ
 cd ~/snort_src
@@ -82,7 +87,7 @@ cd libdaq-3.0.5
 ./bootstrap
 ./configure
 make
-make install
+sudo make install
 
 #update libraries
 ldconfig
@@ -95,7 +100,7 @@ cd snort3-3.1.18.0
 ./configure_cmake.sh --prefix=/usr/local --enable-tcmalloc --enable-jemalloc
 cd build
 make
-make install
+sudo make install
 
 #check verision
 /usr/local/bin/snort -V
